@@ -11,12 +11,11 @@ public class TestSqsListener {
         System.out.println("TestSqsListener インスタンスを生成");
     }
 
-    @SqsListener(value = "test-queue-spring-boot", acknowledgementMode = SqsListenerAcknowledgementMode.ALWAYS)
+    @SqsListener(value = "test-queue-spring-boot", acknowledgementMode = SqsListenerAcknowledgementMode.MANUAL)
     public void receiveMessageFromQueue (String message) {
         System.out.println("メッセージをポーリングします");
-        System.out.println("sqs message: " + message);
+        System.out.println("Received a message from SQS: "+ message);
         // 意図的に例外をスロー
-        throw new RuntimeException("これは意図的な例外です");
-        //System.out.println("Received a message from SQS: "+ message);
+        //throw new RuntimeException("これは意図的な例外です");
     }
 }
